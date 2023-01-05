@@ -57,8 +57,8 @@ $(PLAN_TARGETS): STACK = $(subst -,_,$(patsubst plan-%,%,$@))
 $(PLAN_TARGETS):
 	@env_dir=$$($(call generate_env_dir)) && \
 	set -x && \
-	terraform -chdir=$${env_dir}/$(STACK) init && \
-	terraform -chdir=$${env_dir}/$(STACK) plan
+	terraform -chdir=$${env_dir}/$(STACK) init -input=false -no-color -reconfigure && \
+	terraform -chdir=$${env_dir}/$(STACK) plan -input=false -no-color
 
 # terraform apply
 .PHONY: all-apply
@@ -69,8 +69,8 @@ $(APPLY_TARGETS): STACK = $(subst -,_,$(patsubst apply-%,%,$@))
 $(APPLY_TARGETS):
 	@env_dir=$$($(call generate_env_dir)) && \
 	set -x && \
-	terraform -chdir=$${env_dir}/$(STACK) init && \
-	terraform -chdir=$${env_dir}/$(STACK) apply
+	terraform -chdir=$${env_dir}/$(STACK) init -input=false -no-color -reconfigure && \
+	terraform -chdir=$${env_dir}/$(STACK) apply -input=false -auto-approve -no-color
 
 # terraform destroy
 .PHONY: destroy-database
