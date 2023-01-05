@@ -18,6 +18,8 @@ phases:
       - aws secretsmanager get-secret-value --secret-id /CodeBuild/PUBLIC_KEY_FOR_GITHUB_CONNECTION | jq -r .SecretBinary | base64 --decode > ~/.ssh/id_git_rsa.pub
       - chmod 600 ~/.ssh/id_git_rsa*
 
+
+      - codebuild-breakpoint
       # tfenv 取得
       - git clone git@github.com:tfutils/tfenv.git  ~/.tfenv
       - export PATH="${HOME}/.tfenv/bin:${PATH}"
