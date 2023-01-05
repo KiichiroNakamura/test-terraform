@@ -9,7 +9,7 @@ phases:
       docker: 20
     commands:
       # Git接続の設定
-      - mv infra/gitconfig ~/.gitconfig
+      # - mv infra/gitconfig ~/.gitconfig
       - cp infra/ssh/known_hosts ~/.ssh/
       - cp infra/ssh/config ~/.ssh/
 
