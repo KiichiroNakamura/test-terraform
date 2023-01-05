@@ -19,7 +19,7 @@ phases:
       - chmod 600 ~/.ssh/id_git_rsa*
 
 
-      #- codebuild-breakpoint
+      - codebuild-breakpoint
       # tfenv 取得
       - git clone git@github.com:tfutils/tfenv.git  ~/.tfenv
       - export PATH="${HOME}/.tfenv/bin:${PATH}"
