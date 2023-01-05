@@ -72,6 +72,23 @@ $(APPLY_TARGETS):
 	terraform -chdir=$${env_dir}/$(STACK) init && \
 	terraform -chdir=$${env_dir}/$(STACK) apply
 
+# terraform destroy
+.PHONY: destroy-database
+destroy-database: ## database ディレクトリで terraform destroy
+	@env_dir=$$($(call generate_env_dir)) && \
+	set -x && \
+	terraform -chdir=$${env_dir}/database init -input=false -no-color -reconfigure && \
+	terraform -chdir=$${env_dir}/database destroy -input=false -auto-approve -no-color -target=module.aurora || true
+
+.PHONY: destroy-app
+destroy-app: ## app ディレクトリで terraform destroy
+	@env_dir=$$($(call generate_env_dir)) && \
+	set -x && \
+	terraform -chdir=$${env_dir}/app init -input=false -no-color -reconfigure && \
+	terraform -chdir=$${env_dir}/app destroy -input=false -auto-approve -target=module.online_ecs_service || true
+	terraform -chdir=$${env_dir}/app destroy -input=false -auto-approve -target=module.batch_ecs_service || true
+	terraform -chdir=$${env_dir}/app destroy -input=false -auto-approve -target=module.app_alb || true
+
 .PHONY: fmt
 fmt: ## コードフォーマット
 	terraform fmt -recursive

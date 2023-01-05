@@ -1,0 +1,36 @@
+# 環境変数
+## $TF_VERSION: 使用する Terraform バージョン
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 20
+    commands:
+      # Git接続の設定
+      # - mv infra/gitconfig ~/.gitconfig
+      - cp infra/ssh/known_hosts ~/.ssh/
+      - cp infra/ssh/config ~/.ssh/
+
+      # 鍵をシークレットマネージャーより取得
+      - codebuild-breakpoint
+      - aws secretsmanager get-secret-value --secret-id /CodeBuild/PRIVATE_KEY_FOR_GITHUB_CONNECTION | jq -r .SecretBinary | base64 --decode > ~/.ssh/id_git_rsa
+      - aws secretsmanager get-secret-value --secret-id /CodeBuild/PUBLIC_KEY_FOR_GITHUB_CONNECTION | jq -r .SecretBinary | base64 --decode > ~/.ssh/id_git_rsa.pub
+      - chmod 600 ~/.ssh/id_git_rsa*
+
+
+      # tfenv 取得
+      - git clone git@github.com:tfutils/tfenv.git  ~/.tfenv
+      - export PATH="${HOME}/.tfenv/bin:${PATH}"
+      - tfenv use ${TF_VERSION}
+
+  pre_build:
+    commands:
+      - cd infra
+      - make install
+      - make plan-${TF_STACK}
+
+  build:
+    commands:
+      - make destroy-${TF_STACK}
