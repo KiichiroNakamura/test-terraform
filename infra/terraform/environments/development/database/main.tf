@@ -12,7 +12,7 @@ locals {
   #
   # カンマ区切りの文字列をsplit関数に渡してリストを生成している
   # カンマの後に空白文字を入れないように注意
-  instance_names = split(",", "alpha")
+  instance_names = split(",", "alpha,bravo")
 
   # Database Instanceのタイプ
   # Auroraで選択できるDBインスタンスタイプはこちら

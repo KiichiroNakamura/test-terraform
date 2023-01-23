@@ -19,8 +19,8 @@ module "aurora" {
   kms_key_id                   = local.default_kms_key_arn
   subnet_ids                   = local.private_subnet_ids
   vpc_security_group_ids       = [aws_security_group.aurora.id]
-  deletion_protection          = false
-  skip_final_snapshot          = true
+  # deletion_protection          = false
+  # skip_final_snapshot          = true
 }
 
 locals {

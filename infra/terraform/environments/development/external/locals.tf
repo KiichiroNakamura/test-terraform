@@ -24,14 +24,14 @@ locals {
 
 # ネットワーク情報参照モジュールから取得できるローカル変数
 locals {
-  # vpc_id = module.data_network.vpc_id
-  vpc_id = "vpc-08f41e3bc330f3c06"
+  #vpc_id = module.data_network.vpc_id
+  vpc_id = "vpc-09664fe7394151f99"
 }
 
 # module "data_network" {
-#   source = "git@github.com:biglobe-isp/terraform-aws-data-network.git?ref=tags/v0.2.0"
+#    source = "git@github.com:biglobe-isp/terraform-aws-data-network.git?ref=tags/v0.2.0"
 
-#   account_specifier = "${local.service_id}-${local.short_env_name}"
+#    account_specifier = "${local.service_id}-${local.short_env_name}"
 # }
 
 # アカウント情報参照モジュールから取得できるローカル変数
@@ -45,5 +45,5 @@ locals {
 }
 
 # module "data_account" {
-#   source = "git@github.com:biglobe-isp/terraform-aws-data-account.git?ref=tags/v0.2.0"
+#    source = "git@github.com:biglobe-isp/terraform-aws-data-account.git?ref=tags/v0.2.0"
 # }

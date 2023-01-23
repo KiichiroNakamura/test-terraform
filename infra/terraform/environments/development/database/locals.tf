@@ -43,8 +43,8 @@ data "aws_kms_key" "default" {
 locals {
   # vpc_id             = module.data_network.vpc_id
   # private_subnet_ids = module.data_network.private_subnet_ids
-  vpc_id             = "vpc-08f41e3bc330f3c06"
-  private_subnet_ids = ["subnet-03b977c4080b04e84","subnet-01074fdd56f042478"]
+  vpc_id             = "vpc-09664fe7394151f99"
+  private_subnet_ids = ["subnet-0c2679ae97687129d","subnet-0fd0c374d8d3841ff"]
 }
 
 # module "data_network" {

@@ -40,8 +40,9 @@ resource "aws_security_group_rule" "vpc_endpoint_ingress" {
   to_port                  = 443
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.ecs.id
-  #security_group_id        = data.aws_security_group.default_vpc_endpoint.id
-  security_group_id        = "sg-00368ed5a5e34f6b9"
+  # naka
+  security_group_id        = data.aws_security_group.default_vpc_endpoint.id
+  #security_group_id        = "sg-0f1b78fa67b4ada13"
 }
 
 data "aws_security_group" "default_vpc_endpoint" {

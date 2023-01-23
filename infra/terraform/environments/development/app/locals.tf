@@ -42,7 +42,7 @@ locals {
   zone_name = "biglobe-mobile.bilobe.co.jp"
 
   # ドメイン名
-  # domain_name = "${local.component_name}.${local.zone_name}"
+  #domain_name = "${local.component_name}.${local.zone_name}"
   domain_name = "mobile-call-history.${local.zone_name}"
 
   # ヘルスチェック対象のパス
@@ -50,17 +50,18 @@ locals {
 
   # Route53 Private Zone ID
   #bows_zone_id = data.aws_route53_zone.bows.zone_id
-  bows_zone_id = "Z01284512QWT157EW2872"
+  #bows_zone_id = "Z01284512QWT157EW2872"
+  # naka
+  bows_zone_id = "Z1030483336BSQAQXYCOD"
 
   # KMSのカスタマーマスターキー
   default_kms_key_arn = data.aws_kms_key.default.arn
 }
 
 # BOWSプライベートホストゾーン
-#
 # BO-AWS-HUBとZone Associate済み。
 # data "aws_route53_zone" "bows" {
-#   name         = local.zone_name
+#   name = local.zone_name
 #   private_zone = true
 # }
 
@@ -89,8 +90,9 @@ module "data_bows" {
 locals {
   # vpc_id             = module.data_network.vpc_id
   # private_subnet_ids = module.data_network.private_subnet_ids
-  vpc_id             = "vpc-08f41e3bc330f3c06"
-  private_subnet_ids = ["subnet-03b977c4080b04e84","subnet-01074fdd56f042478"]
+  # naka
+  vpc_id             = "vpc-09664fe7394151f99"
+  private_subnet_ids = ["subnet-0c2679ae97687129d","subnet-0fd0c374d8d3841ff"]
 }
 
 # module "data_network" {

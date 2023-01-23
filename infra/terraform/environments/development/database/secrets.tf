@@ -74,9 +74,8 @@ resource "aws_ssm_parameter" "datasource_driver" {
 #
 # tfstateファイルに秘匿情報を格納したくないため、認証情報はSecrets Managerに格納する
 # TerraformでSecrets Managerのリソース作成は行うが、実際の値の登録はAWSマネジメントコンソールから行う
-
-# resource "aws_secretsmanag" {
-#   name        = "/${local.component_name}/datasource/password"
-#   description = "データベース接続パスワード"
-#   kms_key_id  = local.default_kms_key_arn
-# }
+resource "aws_secretsmanager_secret" "datasource_password" {
+  name        = "/${local.component_name}/datasource/password"
+  description = "データベース接続パスワード"
+  kms_key_id  = local.default_kms_key_arn
+}
