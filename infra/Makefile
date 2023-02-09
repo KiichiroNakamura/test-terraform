@@ -87,6 +87,13 @@ destroy-app: ## app ディレクトリで terraform destroy
 	terraform -chdir=$${env_dir}/app init -input=false -no-color -reconfigure && \
 	terraform -chdir=$${env_dir}/app destroy -input=false -auto-approve -target=module.online_ecs_service -target=module.batch_ecs_service 
 
+.PHONY: destroy-monitoring
+destroy-monitoring: ## monitoring ディレクトリで terraform destroy
+	@env_dir=$$($(call generate_env_dir)) && \
+	set -x && \
+	terraform -chdir=$${env_dir}/monitoring init -input=false -no-color -reconfigure && \
+	terraform -chdir=$${env_dir}/monitoring destroy -input=false -auto-approve 
+
 .PHONY: fmt
 fmt: ## コードフォーマット
 	terraform fmt -recursive
