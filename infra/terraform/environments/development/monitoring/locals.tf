@@ -15,7 +15,7 @@ locals {
   batch_component_type = "batch"
 
    # Eメールアドレス
-  email_address = "kiichiro@mxz.mesh.ne.jp"
+  email_address = "kiichiro@mxz.mesh.ne.jpXXX"
 
   # efsネーム
   efs_creation_token = "biglobe-mobile-aws-efs"
