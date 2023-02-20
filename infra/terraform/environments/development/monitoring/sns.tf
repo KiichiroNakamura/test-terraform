@@ -1,6 +1,6 @@
 # SNSトピック: 通話明細アラーム（サービス担当）
 resource "aws_sns_topic" "alarm" {
-  name            = "user-aws-alarm"
+  name            = "user-${local.component_name}-alarm"
   display_name    = "通話明細アラーム（サービス担当）"
   delivery_policy = <<DELIVERY_POLICY
 {

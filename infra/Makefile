@@ -7,7 +7,7 @@ MAKEFLAGS += --no-builtin-rules
 # Terraformでのapply対象
 # terraform/environments/<env>/配下のディレクトリ名と一致させる
 # 依存関係を正しく解決できるように、依存関係の順序にしたがってハードコードしておく
-STACKS := external base database app cicd monitoring
+STACKS := external base database app cicd monitoring test
 
 # Terraformのターゲット名
 INIT_TARGETS := $(subst _,-,$(patsubst %,init-%,$(STACKS)))

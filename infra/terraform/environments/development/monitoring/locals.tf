@@ -4,15 +4,21 @@
 # 単一ファイルからのみ参照される変数は、このファイルへ記載する必要はなく、メンテナンスしやすい場所へ書くこと。
 
 locals {
-  # サブシステム名
-  subsystem_name = replace("biglobe-mobile", "_", "-")
 
   # コンポーネント名
   component_name = replace("mobile-call-history", "_", "-")
+ 
+  # コンポーネントタイプ：オンライン
+  online_component_type = "online"
+
+  # コンポーネントタイプ：バッチ
+  batch_component_type = "batch"
 
    # Eメールアドレス
   email_address = "kiichiro@mxz.mesh.ne.jp"
 
+  # efsネーム
+  efs_creation_token = "biglobe-mobile-aws-efs"
 
  }
 
@@ -29,3 +35,12 @@ locals {
 module "data_account" {
   source = "git@github.com:biglobe-isp/terraform-aws-data-account.git?ref=tags/v0.2.0"
 }
+
+# # efs
+# locals {
+#   filesystem_id = data.aws_efs_file_system.efs.efs_creation_token.id
+# }
+# data "aws_efs_file_system"  "efs"{
+#   create_token  = "mobile-call-history-efs"
+
+# }
